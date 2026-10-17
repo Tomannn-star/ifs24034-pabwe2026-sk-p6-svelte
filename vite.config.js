@@ -5,7 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 import process from "process";
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+  const envDir = import.meta.dirname || process.cwd();
+  const env = loadEnv(mode, envDir, "");
 
   return {
     plugins: [
@@ -26,7 +27,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       DELCOM_BASEURL: JSON.stringify(
-        env.VITE_DELCOM_BASEURL || "http://localhost:8000/api/v1"
+        env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
       ),
     },
     test: {
