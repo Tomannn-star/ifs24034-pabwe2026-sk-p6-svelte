@@ -95,7 +95,7 @@
 {#if !profile}
   <div class="flex flex-col items-center justify-center py-24">
     <LoaderCircle size={36} class="text-indigo-600 animate-spin mb-2" />
-    <p class="text-sm font-medium text-slate-600">Memuat data profil...</p>
+    <h1 class="text-sm font-medium text-slate-600">Memuat data profil...</h1>
   </div>
 {:else}
   <div class="space-y-8 max-w-4xl mx-auto animate-in fade-in duration-300">
