@@ -23,7 +23,23 @@ export default defineConfig(({ mode }) => {
       port: Number(env.APP_PORT) || 3004,
     },
     build: {
-      chunkSizeWarningLimit: 1500,
+      target: "esnext",
+      sourcemap: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("@toast-ui")) {
+              return "vendor-toastui";
+            }
+            if (id.includes("sweetalert2")) {
+              return "vendor-swal";
+            }
+            if (id.includes("lucide-svelte")) {
+              return "vendor-lucide";
+            }
+          },
+        },
+      },
     },
     define: {
       DELCOM_BASEURL: JSON.stringify(
