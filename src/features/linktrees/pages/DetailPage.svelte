@@ -4,7 +4,6 @@
   import ChangeCoverModal from "../modals/ChangeCoverModal.svelte";
   import ChangeModal from "../modals/ChangeModal.svelte";
   import ItemModal from "../modals/ItemModal.svelte";
-  import MarkdownViewer from "../components/MarkdownViewer.svelte";
   import { linkTreesStore } from "../states/linkTreesStore";
   import { usersStore } from "../../users/states/usersStore";
   import { formatDate, showConfirmDialog } from "../../../helpers/toolsHelper";
@@ -34,10 +33,15 @@
   let showItemModal = false;
   let selectedItem = null;
 
+  let MarkdownViewer = null;
+
   onMount(() => {
     if (linkTreeId) {
       linkTreesStore.asyncSetLinkTree(linkTreeId);
     }
+    import("../components/MarkdownViewer.svelte").then((m) => {
+      MarkdownViewer = m.default;
+    });
   });
 
   let prevId = linkTreeId;
@@ -231,7 +235,11 @@
           class="prose max-w-none text-slate-600 bg-slate-50/60 p-6 rounded-2xl border border-slate-100 leading-relaxed"
         >
           {#if linkTree.description}
-            <MarkdownViewer content={linkTree.description} />
+            {#if MarkdownViewer}
+              <svelte:component this={MarkdownViewer} content={linkTree.description} />
+            {:else}
+              <div data-testid="markdown-viewer" class="text-sm text-slate-700 whitespace-pre-line">{linkTree.description}</div>
+            {/if}
           {:else}
             <p class="italic text-slate-600">
               Tidak ada deskripsi rinci untuk link tree ini.
