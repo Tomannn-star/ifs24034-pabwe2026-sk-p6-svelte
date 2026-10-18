@@ -103,7 +103,7 @@
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           Daftar Link Tree
         </h1>
-        <p class="text-sm text-slate-500 mt-1">
+        <p class="text-sm text-slate-600 mt-1">
           Kelola dan bagikan kumpulan tautan penting Anda dalam satu halaman terpadu.
         </p>
       </div>
@@ -263,10 +263,10 @@
             <!-- Card Body Content -->
             <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-1">
+                <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-1">
                   {tree.title}
-                </h3>
-                <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                </h2>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2 leading-relaxed">
                   {tree.description || "Tidak ada deskripsi."}
                 </p>
               </div>
