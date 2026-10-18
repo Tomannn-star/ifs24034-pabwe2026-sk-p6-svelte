@@ -79,7 +79,7 @@
       <div class="space-y-6">
         <div>
           <p
-            class="px-3 text-xs font-bold uppercase tracking-wider text-slate-400"
+            class="px-3 text-xs font-bold uppercase tracking-wider text-slate-600"
           >
             Menu Utama
           </p>
@@ -99,7 +99,7 @@
                     size={20}
                     class={active
                       ? 'text-white'
-                      : 'text-slate-400 group-hover:text-slate-600 transition-colors'}
+                      : 'text-slate-500 group-hover:text-slate-700 transition-colors'}
                   />
                   <span>{item.label}</span>
                 </div>
@@ -115,7 +115,7 @@
       <!-- Footer Info -->
       <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl">
         <p class="text-xs font-bold text-slate-700">Delcom Link Tree</p>
-        <p class="text-[11px] text-slate-400 mt-0.5">Versi 1.0.0 (Svelte 5)</p>
+        <p class="text-[11px] text-slate-600 mt-0.5">Versi 1.0.0 (Svelte 5)</p>
       </div>
     </div>
   </aside>

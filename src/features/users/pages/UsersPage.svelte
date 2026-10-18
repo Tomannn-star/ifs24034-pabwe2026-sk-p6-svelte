@@ -98,7 +98,7 @@
               </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
               <span class="font-mono font-semibold">{"ID: #" + u.id}</span>
               <span class="flex items-center gap-1">
                 <Calendar size={13} />

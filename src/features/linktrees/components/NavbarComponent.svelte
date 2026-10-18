@@ -130,7 +130,7 @@
           class="absolute right-0 mt-2 w-56 rounded-2xl bg-white border border-slate-100 shadow-xl shadow-slate-200/50 py-2 animate-in fade-in zoom-in-95 duration-100 z-50"
         >
           <div class="px-4 py-2 border-b border-slate-100">
-            <p class="text-xs text-slate-400 font-medium">Masuk sebagai</p>
+            <p class="text-xs text-slate-600 font-medium">Masuk sebagai</p>
             <p class="text-sm font-bold text-slate-800 truncate">
               {profile?.name}
             </p>

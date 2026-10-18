@@ -92,6 +92,7 @@
     <div
       class="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"
     ></div>
+    <h1 class="text-sm font-medium text-slate-600 mt-3">Memuat detail link tree...</h1>
   </div>
 {:else}
   <div class="space-y-6 max-w-4xl mx-auto animate-in fade-in duration-300">
@@ -160,7 +161,7 @@
       <div class="p-6 sm:p-8 space-y-6">
         <div class="space-y-3">
           <div class="flex items-center gap-3">
-            <span class="font-mono text-xs font-bold text-slate-400">
+            <span class="font-mono text-xs font-bold text-slate-600">
               {"#" + linkTree.id}
             </span>
             {#if linkTree.type === "public"}
@@ -194,13 +195,13 @@
           </h1>
 
           <div
-            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400"
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600"
           >
             {#if linkTree.user?.name || linkTree.author}
               <div class="flex items-center gap-1.5">
                 <User size={14} class="shrink-0" />
                 <span
-                  >Pemilik: <strong class="text-slate-600"
+                  >Pemilik: <strong class="text-slate-700"
                     >{linkTree.user?.name || linkTree.author}</strong
                   ></span
                 >
@@ -232,7 +233,7 @@
           {#if linkTree.description}
             <MarkdownViewer content={linkTree.description} />
           {:else}
-            <p class="italic text-slate-400">
+            <p class="italic text-slate-600">
               Tidak ada deskripsi rinci untuk link tree ini.
             </p>
           {/if}
@@ -253,7 +254,7 @@
           </div>
           <div>
             <h2 class="text-lg font-bold text-slate-900">Daftar Item Tautan</h2>
-            <p class="text-xs text-slate-500">
+            <p class="text-xs text-slate-600">
               {linkTree.items && linkTree.items.length > 0
                 ? `${linkTree.items.length} tautan tersedia`
                 : "Belum ada item tautan"}
@@ -296,7 +297,7 @@
                 <div class="font-bold text-sm text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
                   {item.title}
                 </div>
-                <div class="text-xs text-slate-400 truncate flex items-center gap-1">
+                <div class="text-xs text-slate-600 truncate flex items-center gap-1">
                   <span class="truncate">{item.url}</span>
                   <ExternalLink size={12} class="shrink-0 opacity-70" />
                 </div>

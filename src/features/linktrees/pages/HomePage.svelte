@@ -140,7 +140,7 @@
           <Layers size={22} />
         </div>
         <div>
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Link Tree</p>
+          <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Total Link Tree</p>
           <p class="text-2xl font-black text-slate-900 mt-0.5">{totalTrees}</p>
         </div>
       </div>
@@ -150,7 +150,7 @@
           <Globe size={22} />
         </div>
         <div>
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Publik</p>
+          <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Publik</p>
           <p class="text-2xl font-black text-slate-900 mt-0.5">{publicTrees}</p>
         </div>
       </div>
@@ -160,7 +160,7 @@
           <Link size={22} />
         </div>
         <div>
-          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Tautan</p>
+          <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Total Tautan</p>
           <p class="text-2xl font-black text-slate-900 mt-0.5">{totalLinksCount}</p>
         </div>
       </div>
@@ -272,7 +272,7 @@
               </div>
 
               <!-- Author & Date -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
                 <div class="flex items-center gap-2 min-w-0">
                   {#if tree.author && tree.author.photo}
                     <img
@@ -331,12 +331,12 @@
             </div>
           </div>
         {:else}
-          <div class="py-20 text-center text-slate-400 bg-white rounded-3xl border border-slate-200/80 col-span-full">
-            <div class="w-16 h-16 rounded-2xl bg-slate-50 text-slate-300 flex items-center justify-center mx-auto mb-3">
+          <div class="py-20 text-center text-slate-500 bg-white rounded-3xl border border-slate-200/80 col-span-full">
+            <div class="w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center mx-auto mb-3">
               <Link size={32} />
             </div>
             <p class="text-base font-bold text-slate-700">Tidak ada link tree ditemukan</p>
-            <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+            <p class="text-xs text-slate-600 mt-1 max-w-sm mx-auto">
               Coba ganti filter atau mulai dengan menambahkan link tree baru.
             </p>
           </div>
