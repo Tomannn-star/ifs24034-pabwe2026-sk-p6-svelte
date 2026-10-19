@@ -223,6 +223,8 @@
                 <img
                   src={tree.cover}
                   alt={tree.title}
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               {:else}
