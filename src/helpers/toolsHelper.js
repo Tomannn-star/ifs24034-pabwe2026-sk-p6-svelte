@@ -73,7 +73,7 @@ export function getOptimizedImageUrl(url, width = 640) {
   if (!url) return "";
   if (url.startsWith("/_vercel/image")) return url;
 
-  const safeWidth = width <= 320 ? 320 : width <= 640 ? 640 : 1080;
+  const safeWidth = width <= 320 ? 320 : 640;
   const match = url.match(/\/(img|default)\/.+/);
   if (match) {
     const cleanPath = match[0];

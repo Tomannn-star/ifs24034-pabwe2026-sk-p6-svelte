@@ -1,3 +1,29 @@
+const mm = (query) => ({
+  matches: false,
+  media: query || "",
+  onchange: null,
+  addListener: () => {},
+  removeListener: () => {},
+  addEventListener: () => {},
+  removeEventListener: () => {},
+  dispatchEvent: () => true,
+});
+
+if (typeof window !== "undefined") {
+  window.matchMedia = mm;
+  try {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: mm,
+    });
+  } catch (e) {}
+}
+if (typeof Window !== "undefined" && Window.prototype) {
+  Window.prototype.matchMedia = mm;
+}
+globalThis.matchMedia = mm;
+
 import "@testing-library/jest-dom";
 import { vi, afterEach, beforeEach } from "vitest";
 import { cleanup } from "@testing-library/svelte";
