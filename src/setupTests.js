@@ -1,6 +1,21 @@
 import "@testing-library/jest-dom";
-import { vi, afterEach } from "vitest";
+import { vi, afterEach, beforeEach } from "vitest";
 import { cleanup } from "@testing-library/svelte";
+
+beforeEach(() => {
+  if (typeof window !== "undefined") {
+    window.matchMedia = vi.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+  }
+});
 
 afterEach(() => {
   cleanup();
@@ -31,22 +46,25 @@ if (typeof document !== "undefined") {
   }
 }
 
+const mockMatchMedia = (query) => ({
+  matches: false,
+  media: query,
+  onchange: null,
+  addListener: () => {},
+  removeListener: () => {},
+  addEventListener: () => {},
+  removeEventListener: () => {},
+  dispatchEvent: () => true,
+});
 if (typeof window !== "undefined") {
+  window.matchMedia = mockMatchMedia;
   Object.defineProperty(window, "matchMedia", {
     writable: true,
     configurable: true,
-    value: (query) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: () => {},
-      removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      dispatchEvent: () => true,
-    }),
+    value: mockMatchMedia,
   });
 }
+globalThis.matchMedia = mockMatchMedia;
 
 import * as $ from "svelte/internal/client";
 

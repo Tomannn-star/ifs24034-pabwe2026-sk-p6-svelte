@@ -93,9 +93,12 @@ describe("toolsHelper", () => {
     expect(getOptimizedImageUrl("")).toBe("");
     expect(getOptimizedImageUrl("https://example.com/photo.jpg")).toBe("https://example.com/photo.jpg");
     expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png", 640)).toContain("/_vercel/image?url=");
+    expect(getOptimizedImageUrl("https://ifs24034-pabwe2026-sk-p6-svelte.vercel.app/img/courses/cover/97_1792310082.png", 640)).toContain("/_vercel/image?url=");
     expect(getOptimizedImageUrl("/img/courses/cover/sample.png", 640)).toContain("/_vercel/image?url=");
     expect(getOptimizedImageUrl("/default/img/user.png", 64)).toContain("/_vercel/image?url=");
     expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png")).toContain("w=640");
+    expect(getOptimizedImageUrl("https://open-api.delcom.org/other/cover.png")).toContain("/_vercel/image?url=");
+    expect(getOptimizedImageUrl("/_vercel/image?url=abc")).toBe("/_vercel/image?url=abc");
   });
 });
 
