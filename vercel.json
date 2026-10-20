@@ -1,6 +1,6 @@
 {
   "images": {
-    "sizes": [320, 640, 1080],
+    "sizes": [32, 48, 64, 96, 128, 192, 256, 320, 384, 640, 1080],
     "domains": ["open-api.delcom.org"],
     "minimumCacheTTL": 31536000,
     "formats": ["image/avif", "image/webp"],
