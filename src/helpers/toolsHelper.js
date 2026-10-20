@@ -71,7 +71,11 @@ export function formatDate(date) {
 
 export function getOptimizedImageUrl(url, width = 640) {
   if (!url) return "";
-  if (url.includes("delcom.org")) {
+  if (
+    url.includes("delcom.org") ||
+    url.startsWith("/img/") ||
+    url.startsWith("/default/")
+  ) {
     const cleanPath = url.replace("https://open-api.delcom.org", "");
     return `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + cleanPath)}&w=${width}&q=75`;
   }

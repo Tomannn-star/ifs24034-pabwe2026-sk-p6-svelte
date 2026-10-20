@@ -93,6 +93,8 @@ describe("toolsHelper", () => {
     expect(getOptimizedImageUrl("")).toBe("");
     expect(getOptimizedImageUrl("https://example.com/photo.jpg")).toBe("https://example.com/photo.jpg");
     expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png", 640)).toContain("/_vercel/image?url=");
+    expect(getOptimizedImageUrl("/img/courses/cover/sample.png", 640)).toContain("/_vercel/image?url=");
+    expect(getOptimizedImageUrl("/default/img/user.png", 64)).toContain("/_vercel/image?url=");
     expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png")).toContain("w=640");
   });
 });
