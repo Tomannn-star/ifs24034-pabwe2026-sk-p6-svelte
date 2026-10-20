@@ -221,8 +221,12 @@
             <div class="relative h-44 bg-slate-900 overflow-hidden">
               {#if tree.cover}
                 <img
-                  src={tree.cover}
+                  src={tree.cover && tree.cover.includes("delcom.org")
+                    ? `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + tree.cover.replace("https://open-api.delcom.org", ""))}&w=320&q=75`
+                    : tree.cover}
                   alt={tree.title}
+                  width="320"
+                  height="176"
                   loading="lazy"
                   decoding="async"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -278,9 +282,11 @@
                 <div class="flex items-center gap-2 min-w-0">
                   {#if tree.author && tree.author.photo}
                     <img
-                      src={tree.author.photo}
+                      src={tree.author.photo.replace("https://open-api.delcom.org", "")}
                       alt={tree.author.name}
                       class="w-6 h-6 rounded-full object-cover shrink-0"
+                      loading="lazy"
+                      decoding="async"
                     />
                   {:else}
                     <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-[10px] shrink-0">

@@ -152,9 +152,16 @@
       {#if linkTree.cover}
         <div class="relative w-full h-64 sm:h-80 bg-slate-900 overflow-hidden">
           <img
-            src={linkTree.cover}
+            src={linkTree.cover && linkTree.cover.includes("delcom.org")
+              ? `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + linkTree.cover.replace("https://open-api.delcom.org", ""))}&w=640&q=75`
+              : linkTree.cover}
             alt={linkTree.title}
+            width="640"
+            height="256"
             class="w-full h-full object-cover"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"

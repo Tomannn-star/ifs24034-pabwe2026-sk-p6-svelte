@@ -100,9 +100,11 @@
       >
         {#if profile && profile.photo}
           <img
-            src={profile.photo}
+            src={profile.photo.replace("https://open-api.delcom.org", "")}
             alt={profile.name}
             class="w-8 h-8 rounded-full object-cover border border-slate-200"
+            loading="lazy"
+            decoding="async"
           />
         {:else}
           <div

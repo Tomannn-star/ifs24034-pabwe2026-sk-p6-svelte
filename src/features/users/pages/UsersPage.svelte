@@ -79,9 +79,11 @@
             <div class="flex items-start gap-3.5">
               {#if u.photo}
                 <img
-                  src={u.photo}
+                  src={u.photo.replace("https://open-api.delcom.org", "")}
                   alt={u.name}
                   class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
+                  loading="lazy"
+                  decoding="async"
                 />
               {:else}
                 <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center font-bold text-base shrink-0">

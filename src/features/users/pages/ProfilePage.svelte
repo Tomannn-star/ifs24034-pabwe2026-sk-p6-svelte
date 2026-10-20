@@ -113,9 +113,11 @@
       <div class="relative group">
         {#if profile.photo}
           <img
-            src={profile.photo}
+            src={profile.photo.replace("https://open-api.delcom.org", "")}
             alt={profile.name}
             class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-2 ring-indigo-100"
+            loading="lazy"
+            decoding="async"
           />
         {:else}
           <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-indigo-600 to-cyan-500 text-white flex items-center justify-center font-bold text-3xl shadow-md">
