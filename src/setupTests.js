@@ -6,6 +6,10 @@ afterEach(() => {
   cleanup();
 });
 
+if (typeof globalThis.DELCOM_BASEURL === "undefined") {
+  globalThis.DELCOM_BASEURL = "https://open-api.delcom.org/api/v1";
+}
+
 if (typeof document !== "undefined") {
   if (!document.elementFromPoint) {
     document.elementFromPoint = () => null;
