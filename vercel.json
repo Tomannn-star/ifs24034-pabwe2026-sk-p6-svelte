@@ -37,9 +37,16 @@
       "destination": "https://open-api.delcom.org/api/v1/:path*"
     },
     {
+      "source": "/img/:path*",
+      "destination": "https://open-api.delcom.org/img/:path*"
+    },
+    {
+      "source": "/default/:path*",
+      "destination": "https://open-api.delcom.org/default/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
 }
-
