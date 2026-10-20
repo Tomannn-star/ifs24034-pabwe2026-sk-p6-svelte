@@ -1,6 +1,6 @@
 <script>
   import { usersStore } from "../states/usersStore";
-  import { showErrorDialog } from "../../../helpers/toolsHelper";
+  import { showErrorDialog, getOptimizedImageUrl } from "../../../helpers/toolsHelper";
   import { User, Camera, Check, LoaderCircle, ShieldCheck } from "lucide-svelte";
 
   $: profile = $usersStore.profile;
@@ -113,8 +113,10 @@
       <div class="relative group">
         {#if profile.photo}
           <img
-            src={profile.photo.replace("https://open-api.delcom.org", "")}
+            src={getOptimizedImageUrl(profile.photo, 192)}
             alt={profile.name}
+            width="96"
+            height="96"
             class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-2 ring-indigo-100"
             loading="lazy"
             decoding="async"

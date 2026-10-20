@@ -110,5 +110,29 @@ describe("UsersPage", () => {
 
     expect(wrapper.text()).not.toContain("Memuat daftar pengguna...");
   });
+
+  it("should show load more button when users exceed visibleCount and load more on click", async () => {
+    vi.spyOn(usersStore, "asyncSetUsers").mockImplementation(() => Promise.resolve());
+    const manyUsers = Array.from({ length: 30 }, (_, i) => ({
+      id: i + 1,
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@delcom.org`,
+      photo: i === 0 ? "https://example.com/photo.jpg" : null,
+      created_at: "2024-10-05T02:53:38.000000Z",
+    }));
+
+    const { wrapper } = renderWithProviders(UsersPage, {
+      preloadedState: {
+        users: manyUsers,
+      },
+    });
+
+    const loadMoreBtn = wrapper.find('[data-testid="load-more-users-btn"]');
+    expect(loadMoreBtn.exists()).toBe(true);
+    expect(wrapper.text()).toContain("Muat Lebih Banyak");
+
+    await loadMoreBtn.trigger("click");
+    expect(wrapper.find('[data-testid="load-more-users-btn"]').exists()).toBe(false);
+  });
 });
 

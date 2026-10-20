@@ -1,11 +1,12 @@
 <script>
   import { onMount } from "svelte";
   import { usersStore } from "../states/usersStore";
-  import { formatDate } from "../../../helpers/toolsHelper";
+  import { formatDate, getOptimizedImageUrl } from "../../../helpers/toolsHelper";
   import { Users, Search, Mail, Calendar, LoaderCircle } from "lucide-svelte";
 
   let loadingUsers = false;
   let search = "";
+  let visibleCount = 24;
 
   $: users = $usersStore.users || [];
 
@@ -23,6 +24,8 @@
     const emailMatch = u.email ? u.email.toLowerCase().includes(query) : false;
     return nameMatch || emailMatch;
   });
+
+  $: displayUsers = filteredUsers.slice(0, visibleCount);
 </script>
 
 <div class="space-y-6 animate-in fade-in duration-300">
@@ -53,7 +56,7 @@
           class="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-slate-200 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
         />
       </div>
-      <span class="text-xs font-semibold text-slate-700 px-3 py-1 bg-slate-100 rounded-lg">
+      <span class="text-sm font-semibold text-slate-700 px-3 py-1 bg-slate-100 rounded-lg">
         Total: {filteredUsers.length} Pengguna
       </span>
     </div>
@@ -71,7 +74,7 @@
           <p class="font-medium">Tidak ada data pengguna ditemukan.</p>
         </div>
       {:else}
-        {#each filteredUsers as u (u.id)}
+        {#each displayUsers as u (u.id)}
           <div
             data-testid={`user-card-${u.id}`}
             class="p-5 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all bg-white flex flex-col justify-between"
@@ -79,8 +82,10 @@
             <div class="flex items-start gap-3.5">
               {#if u.photo}
                 <img
-                  src={u.photo.replace("https://open-api.delcom.org", "")}
+                  src={getOptimizedImageUrl(u.photo, 96)}
                   alt={u.name}
+                  width="48"
+                  height="48"
                   class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
                   loading="lazy"
                   decoding="async"
@@ -93,14 +98,14 @@
 
               <div class="min-w-0 flex-1">
                 <h2 class="text-base font-bold text-slate-900 truncate">{u.name}</h2>
-                <p class="text-xs text-slate-600 flex items-center gap-1 mt-0.5 truncate">
+                <p class="text-sm text-slate-600 flex items-center gap-1 mt-0.5 truncate">
                   <Mail size={14} class="shrink-0 text-slate-400" />
                   <span class="truncate">{u.email}</span>
                 </p>
               </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-600">
               <span class="font-mono font-semibold">{"ID: #" + u.id}</span>
               <span class="flex items-center gap-1">
                 <Calendar size={13} />
@@ -111,6 +116,19 @@
         {/each}
       {/if}
     </div>
+
+    {#if visibleCount < filteredUsers.length}
+      <div class="p-6 pt-0 text-center">
+        <button
+          type="button"
+          data-testid="load-more-users-btn"
+          on:click={() => (visibleCount += 24)}
+          class="px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-semibold text-sm text-slate-700 shadow-xs transition-all hover:border-slate-300 cursor-pointer"
+        >
+          Muat Lebih Banyak ({filteredUsers.length - visibleCount} tersisa)
+        </button>
+      </div>
+    {/if}
   </div>
 </div>
 

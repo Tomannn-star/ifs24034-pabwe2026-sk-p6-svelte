@@ -6,7 +6,7 @@
   import ItemModal from "../modals/ItemModal.svelte";
   import { linkTreesStore } from "../states/linkTreesStore";
   import { usersStore } from "../../users/states/usersStore";
-  import { formatDate, showConfirmDialog } from "../../../helpers/toolsHelper";
+  import { formatDate, showConfirmDialog, getOptimizedImageUrl } from "../../../helpers/toolsHelper";
   import {
     ArrowLeft,
     ImagePlus,
@@ -152,9 +152,7 @@
       {#if linkTree.cover}
         <div class="relative w-full h-64 sm:h-80 bg-slate-900 overflow-hidden">
           <img
-            src={linkTree.cover && linkTree.cover.includes("delcom.org")
-              ? `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + linkTree.cover.replace("https://open-api.delcom.org", ""))}&w=640&q=75`
-              : linkTree.cover}
+            src={getOptimizedImageUrl(linkTree.cover, 640)}
             alt={linkTree.title}
             width="640"
             height="256"

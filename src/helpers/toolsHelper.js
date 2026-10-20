@@ -69,3 +69,12 @@ export function formatDate(date) {
   });
 }
 
+export function getOptimizedImageUrl(url, width = 640) {
+  if (!url) return "";
+  if (url.includes("delcom.org")) {
+    const cleanPath = url.replace("https://open-api.delcom.org", "");
+    return `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + cleanPath)}&w=${width}&q=75`;
+  }
+  return url;
+}
+

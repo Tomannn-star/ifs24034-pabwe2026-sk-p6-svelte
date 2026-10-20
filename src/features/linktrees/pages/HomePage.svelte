@@ -5,7 +5,7 @@
   import ChangeModal from "../modals/ChangeModal.svelte";
   import { linkTreesStore } from "../states/linkTreesStore";
   import { usersStore } from "../../users/states/usersStore";
-  import { formatDate, showConfirmDialog } from "../../../helpers/toolsHelper";
+  import { formatDate, showConfirmDialog, getOptimizedImageUrl } from "../../../helpers/toolsHelper";
   import {
     Plus,
     Link,
@@ -221,9 +221,7 @@
             <div class="relative h-44 bg-slate-900 overflow-hidden">
               {#if tree.cover}
                 <img
-                  src={tree.cover && tree.cover.includes("delcom.org")
-                    ? `/_vercel/image?url=${encodeURIComponent("https://open-api.delcom.org" + tree.cover.replace("https://open-api.delcom.org", ""))}&w=320&q=75`
-                    : tree.cover}
+                  src={getOptimizedImageUrl(tree.cover, 320)}
                   alt={tree.title}
                   width="320"
                   height="176"

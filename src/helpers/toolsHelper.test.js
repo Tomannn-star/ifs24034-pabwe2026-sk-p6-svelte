@@ -6,6 +6,7 @@ import {
   showSuccessDialog,
   showConfirmDialog,
   formatDate,
+  getOptimizedImageUrl,
 } from "./toolsHelper";
 
 vi.mock("sweetalert2", () => ({
@@ -84,6 +85,15 @@ describe("toolsHelper", () => {
     const formatted = formatDate("2024-02-26T02:34:26.000000Z");
     expect(formatted).toBeTruthy();
     expect(typeof formatted).toBe("string");
+  });
+
+  it("should optimize delcom image urls or return original url", () => {
+    expect(getOptimizedImageUrl(null)).toBe("");
+    expect(getOptimizedImageUrl(undefined)).toBe("");
+    expect(getOptimizedImageUrl("")).toBe("");
+    expect(getOptimizedImageUrl("https://example.com/photo.jpg")).toBe("https://example.com/photo.jpg");
+    expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png", 640)).toContain("/_vercel/image?url=");
+    expect(getOptimizedImageUrl("https://open-api.delcom.org/img/courses/cover/sample.png")).toContain("w=640");
   });
 });
 

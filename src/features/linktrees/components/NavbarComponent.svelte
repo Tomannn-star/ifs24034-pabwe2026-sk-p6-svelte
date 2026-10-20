@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { navigate } from "../../../router.js";
+  import { getOptimizedImageUrl } from "../../../helpers/toolsHelper.js";
   import {
     Link,
     User,
@@ -100,8 +101,10 @@
       >
         {#if profile && profile.photo}
           <img
-            src={profile.photo.replace("https://open-api.delcom.org", "")}
+            src={getOptimizedImageUrl(profile.photo, 64)}
             alt={profile.name}
+            width="32"
+            height="32"
             class="w-8 h-8 rounded-full object-cover border border-slate-200"
             loading="lazy"
             decoding="async"
